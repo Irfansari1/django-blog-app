@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 style="text-align: center;">IS Blog</h1>
+<h1 style="text-align: center;">Sari Blog</h1>
 <div class="row mt-5">
     {% for obj in object_list %}
-    <div class="col-4">
+    <div class="col-lg-4 col-md-6 col-sm-12">
 
         <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem; height: 25rem;">
             <img src="{{ obj.image.url }}" class="card-img-top" alt="post_image">

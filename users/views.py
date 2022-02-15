@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
-from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib import messages
+from django.shortcuts import redirect, render
+from .forms import RegistrationForm, UserUpdateForm, ProfileUpdateForm
 
 
 def register(request):
@@ -22,7 +22,7 @@ def register(request):
 
 
 def profile(request):
-    # obj = User.objects.get(id=id)
+    
     u_form = UserUpdateForm(request.POST or None, instance=request.user)
     p_form = ProfileUpdateForm(
         request.POST or None, request.FILES or None, instance=request.user.profile)

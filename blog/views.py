@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import Post, PostView
+from .models import Post, Like, PostView
 from .forms import PostForm, CommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -55,6 +55,7 @@ def post_detail(request, slug):
     }
     return render(request, "blog/post_detail.html", context)
 
+
 @login_required()
 def post_update(request, slug):
     obj = get_object_or_404(Post, slug=slug)
@@ -89,3 +90,15 @@ def post_delete(request, slug):
         "object": obj
     }
     return render(request, "blog/post_delete.html", context)
+
+@login_required()
+def like(request, slug):
+    if request.method == "POST":
+        obj = get_object_or_404(Post, slug=slug)
+        like_qs = Like.objects.filter(user=request.user, post=obj)
+        if like_qs:
+            like_qs.delete()
+        else:
+            Like.objects.create(user=request.user, post=obj)
+        return redirect('blog:detail', slug=slug)
+    return redirect('blog:detail', slug=slug)
