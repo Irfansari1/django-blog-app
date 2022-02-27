@@ -2,5 +2,5 @@
 
 
 
-You can check tha app rom thelink provided below: <br>
+You can check the app from the link provided below: <br>
 https://heroku123blogapp.herokuapp.com/
